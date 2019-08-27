@@ -1,60 +1,35 @@
+/*
+Developer: Hamed Mirlohi
+self made function to convert any string to integers.
+ */
 
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-#include <math.h>
 
 
-int convert_from_A_to_Integer(char digit)
+int myAtoi(const char* number)
 {
-    switch (digit)
-    {
-    case '1':
-        return 1;
-    case '2':
-        return 2;
-    case '3':
-        return 3;
-    case '4':
-        return 4;
-    case '5':
-        return 5;
-    case '6':
-        return 6;
-    case '7':
-        return 7;
-    case '8':
-        return 8;
-    case '9':
-        return 9;
-    }
-    return -200;
-}
-
-int myAtoi(const char* twelve)
-{
-    int i, j;
+    int i;
     int result = 0;
-    for (i = 0, j = strlen(twelve) - 1 ; i < strlen(twelve); i++, j--)
+    for(i = 0; i < strlen(number);i++ )
     {
-        // convert single character to integer, then muliply by ( 10  ^  j) and add to the result
-        result += (convert_from_A_to_Integer(twelve[i]) * (pow(10,j)));
+        // look at the ascii table, values 0-9 all have sequence values.  minus all of them by zero. an integer will be generated.
+        result = (10 * result) + number[i] - '0';
     }
     return result;
 }
 
 
-int main()
+int main(void)
 {   
-    char twelve[] = "23";
+    char number[] = "1048";
 
-    // Hamed Atoi
-    int number = myAtoi(twelve);
-    printf("Hamed result: %d\n", number);
+    // C library atoi
+    int result =  atoi(number);
+    printf("C library atoi: %d\n",result + 10);
 
-    // C library Atoi
-
-    number = atoi(twelve);
-    printf("C Library result: %d\n", number);
-
+    // Hamed atoi
+    result = myAtoi(number);
+    printf("Hamed atoi: %d\n",result + 10);
 }
