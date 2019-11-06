@@ -11,11 +11,14 @@ self made function to convert any string to integers.
 int myAtoi(const char* number)
 {
     int i;
+    int tmp = 0;
     int result = 0;
-    for(i = 0; i < strlen(number);i++ )
+    for(i = 0; number[i] != '\0'; i++)
     {
         // look at the ascii table, values 0-9 all have sequence values.  minus all of them by zero. an integer will be generated.
-        result = (10 * result) + number[i] - '0';
+        tmp = number[i] - '0'; // 123   1
+        result = tmp + (result * 10);
+        
     }
     return result;
 }
